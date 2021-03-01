@@ -115,7 +115,7 @@ boolean flag =false;
         model.setMaNV(helPer.ShareHP.USER.getMaNV());
         model.setNgayKG(helPer.DateHP.add(30));
         model.setNgayTao(helPer.DateHP.now());
-
+jButton1.setEnabled(true);
         this.setModel(model);
     }
 
@@ -526,7 +526,7 @@ void check(){
            check();
         if (flag == true) {
             try {
-                String nkg = jTextField1.getText();
+                String nkg = jTextField4.getText();
                 Date date = new SimpleDateFormat("dd/MM/yyyy").parse(nkg);
                 if (date.before(new Date())) {
                     helPer.DialogHP.alert(this, "Ngày khai giảng phải sau ngày hiện tại!");
@@ -544,7 +544,7 @@ void check(){
            check();
         if (flag == true) {
             try {
-                String nkg = jTextField1.getText();
+                String nkg = jTextField4.getText();
                 Date date = new SimpleDateFormat("dd/MM/yyyy").parse(nkg);
                 if (date.before(new Date())) {
                     helPer.DialogHP.alert(this, "Ngày khai giảng phải sau ngày hiện tại!");
