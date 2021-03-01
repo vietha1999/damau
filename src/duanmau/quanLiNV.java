@@ -8,13 +8,14 @@ package duanmau;
 import CLASS.nhanVien;
 import DAO.daoNV;
 import java.util.List;
+import javax.swing.JInternalFrame;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author H2
  */
-public class quanLiNV extends javax.swing.JFrame {
+public class quanLiNV extends JInternalFrame {
     DAO.daoNV dao =new daoNV();
     int index= 0;
     boolean flag= false; 
@@ -27,8 +28,8 @@ public class quanLiNV extends javax.swing.JFrame {
 
     }
 void init(){
-    setIconImage(helPer.ShareHP.APP_ICON);
-    setLocationRelativeTo(null);
+//    setIconImage(helPer.ShareHP.APP_ICON);
+//    setLocationRelativeTo(null);
     if(helPer.ShareHP.USER != null){
         loadtb();
     }else {

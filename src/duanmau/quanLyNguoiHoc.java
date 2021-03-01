@@ -8,13 +8,14 @@ package duanmau;
 import CLASS.nguoiHoc;
 import DAO.daoNH;
 import java.util.List;
+import javax.swing.JInternalFrame;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author H2
  */
-public class quanLyNguoiHoc extends javax.swing.JFrame {
+public class quanLyNguoiHoc extends JInternalFrame {
 DAO.daoNH dao =new daoNH();
 int index =0;
     /**
@@ -22,8 +23,8 @@ int index =0;
      */
     public quanLyNguoiHoc() {
         initComponents();
-        setIconImage(helPer.ShareHP.APP_ICON);
-        setLocationRelativeTo(null);
+//        setIconImage(helPer.ShareHP.APP_ICON);
+//        setLocationRelativeTo(null);
         if (helPer.ShareHP.USER != null) {
             load();
         } else {
@@ -55,35 +56,7 @@ int index =0;
             helPer.DialogHP.alert(this, "eror 404");
         }
     }
-void check(){
-     if ((jTextField3.getText()).length() != 7) {
-            if ((jTextField3.getText()).isBlank()) {
-                helPer.DialogHP.alert(this, "Mã người học không được để trống !!!");
-            } else {
-                helPer.DialogHP.alert(this, "Mã người học phải 7 ký tự");
-            }
-        } else if ((jTextField4.getText()).isBlank()) {
-            helPer.DialogHP.alert(this, "Họ tên không được để trống !!!");
-        } else if (jTextField6.getText().isBlank()) {
-            helPer.DialogHP.alert(this, "Số điện thoại không được để trống");
-        } else if (jTextField6.getText().length() < 10 || jTextField6.getText().length() > 12) {
-            helPer.DialogHP.alert(this, "Số điện thoại phải nhập đủ 10 hoặc 11 số.");
-        } else if (!jTextField6.getText().matches("[0-9]+")) {
-            helPer.DialogHP.alert(this, "Số điện thoại chỉ nhập số");
-        } else if (jTextField5.getText().isBlank()) {
-            helPer.DialogHP.alert(this, "Email không đươc để trống");
-        } else if (verifyEmail(jTextField5.getText()) == false) {
-            helPer.DialogHP.alert(this, "Định dạng email bạn nhập không chính xác");
-        } else if (jTextField7.getText().isBlank()) {
-            helPer.DialogHP.alert(this, "Ngày sinh không đươc để trống");
-        } else if (!jTextField7.getText().isBlank()) {
-            if ((jTextField7.getText().length() != 10)) {
-                helPer.DialogHP.alert(this, "Định dạng ngày nhập vào chưa chính xác!");
-            }
-        }else{
-            flag=true;
-        }
-}
+
     void insert() {
         CLASS.nguoiHoc model = getModel();
         try {
@@ -619,16 +592,60 @@ void check(){
     }//GEN-LAST:event_jTextField8ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        check();
-        if(flag==true){
-            insert();
+     if ((jTextField3.getText()).length() != 7) {
+            if ((jTextField3.getText()).isBlank()) {
+                helPer.DialogHP.alert(this, "Mã người học không được để trống !!!");
+            } else {
+                helPer.DialogHP.alert(this, "Mã người học phải 7 ký tự");
+            }
+        } else if ((jTextField4.getText()).isBlank()) {
+            helPer.DialogHP.alert(this, "Họ tên không được để trống !!!");
+        } else if (jTextField6.getText().isBlank()) {
+            helPer.DialogHP.alert(this, "Số điện thoại không được để trống");
+        } else if (jTextField6.getText().length() < 10 || jTextField6.getText().length() > 12) {
+            helPer.DialogHP.alert(this, "Số điện thoại phải nhập đủ 10 hoặc 11 số.");
+        } else if (!jTextField6.getText().matches("[0-9]+")) {
+            helPer.DialogHP.alert(this, "Số điện thoại chỉ nhập số");
+        } else if (jTextField5.getText().isBlank()) {
+            helPer.DialogHP.alert(this, "Email không đươc để trống");
+        } else if (verifyEmail(jTextField5.getText()) == false) {
+            helPer.DialogHP.alert(this, "Định dạng email bạn nhập không chính xác");
+        } else if (jTextField7.getText().isBlank()) {
+            helPer.DialogHP.alert(this, "Ngày sinh không đươc để trống");
+             if ((jTextField7.getText().length() != 10)) {
+                helPer.DialogHP.alert(this, "Định dạng ngày nhập vào chưa chính xác!");
+             }
+        }else{
+            update();
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        check();
-        if(flag==true){
-            update();
+     if ((jTextField3.getText()).length() != 7) {
+            if ((jTextField3.getText()).isBlank()) {
+                helPer.DialogHP.alert(this, "Mã người học không được để trống !!!");
+            } else {
+                helPer.DialogHP.alert(this, "Mã người học phải 7 ký tự");
+            }
+        } else if ((jTextField4.getText()).isBlank()) {
+            helPer.DialogHP.alert(this, "Họ tên không được để trống !!!");
+        } else if (jTextField6.getText().isBlank()) {
+            helPer.DialogHP.alert(this, "Số điện thoại không được để trống");
+        } else if (jTextField6.getText().length() < 10 || jTextField6.getText().length() > 12) {
+            helPer.DialogHP.alert(this, "Số điện thoại phải nhập đủ 10 hoặc 11 số.");
+        } else if (!jTextField6.getText().matches("[0-9]+")) {
+            helPer.DialogHP.alert(this, "Số điện thoại chỉ nhập số");
+        } else if (jTextField5.getText().isBlank()) {
+            helPer.DialogHP.alert(this, "Email không đươc để trống");
+        } else if (verifyEmail(jTextField5.getText()) == false) {
+            helPer.DialogHP.alert(this, "Định dạng email bạn nhập không chính xác");
+        } else if (jTextField7.getText().isBlank()) {
+            helPer.DialogHP.alert(this, "Ngày sinh không đươc để trống");
+            if ((jTextField7.getText().length() != 10)) {
+                helPer.DialogHP.alert(this, "Định dạng ngày nhập vào chưa chính xác!");
+            } 
+        }else{
+            insert();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 

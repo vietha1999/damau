@@ -14,13 +14,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JInternalFrame;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author H2
  */
-public class quanLyKhoaHoc extends javax.swing.JFrame {
+public class quanLyKhoaHoc extends JInternalFrame {
 DAO.daoKH dao = new daoKH();
 DAO.daoCD cddao =new daoCD();
 int index=0;
@@ -31,8 +32,8 @@ boolean flag =false;
      */
     public quanLyKhoaHoc() {
         initComponents();
-        setIconImage(helPer.ShareHP.APP_ICON);
-        setLocationRelativeTo(null);
+//        setIconImage(helPer.ShareHP.APP_ICON);
+//        setLocationRelativeTo(null);
         if (helPer.ShareHP.USER != null) {
             this.fillComboBox();
             this.load();
@@ -44,7 +45,7 @@ boolean flag =false;
             helPer.DialogHP.alert(this, "Vui lòng đăng nhập");
             this.jTabbedPane1.removeAll();
         }
-        jTextField4.setEditable(false);
+        jTextField1.setEditable(false);
     }
  void load() {
         jButton1.setEnabled(false);
@@ -163,7 +164,7 @@ void check(){
                     helPer.DialogHP.alert(this, "Thời lượng phải truyền vào kiểu số!");
                 }
             }
-    }else if(jTextField1.getText().isBlank()){
+    }else if(jTextField4.getText().isBlank()){
         helPer.DialogHP.alert(this, "Ngày khai giảng bị trống");
     }else if(jTextField5.getText().isBlank()){
         helPer.DialogHP.alert(this, "Ngày tạo đang để trống");
@@ -174,7 +175,7 @@ void check(){
     void setModel(CLASS.khoaHoc model) {
         jComboBox1.setToolTipText(String.valueOf(model.getMaKH()));
         jComboBox1.setSelectedItem(cddao.findById(model.getMaCD()));
-        jTextField1.setText(helPer.DateHP.toString(model.getNgayKG()));
+        jTextField4.setText(helPer.DateHP.toString(model.getNgayKG()));
         jTextField2.setText(String.valueOf(model.getHocPhi()));
         jTextField3.setText(String.valueOf(model.getThoiLuong()));
         jTextField5.setText(helPer.DateHP.toString(model.getNgayTao()));
@@ -185,7 +186,7 @@ void check(){
         CLASS.khoaHoc model = new khoaHoc();
         CLASS.chuyenDe chuyenDe = (chuyenDe) jComboBox1.getSelectedItem();
         model.setMaCD(chuyenDe.getMaCD());
-        model.setNgayKG(helPer.DateHP.toDate(jTextField1.getText()));
+        model.setNgayKG(helPer.DateHP.toDate(jTextField4.getText()));
         model.setHocPhi(Double.valueOf(jTextField2.getText()));
         model.setThoiLuong(Integer.valueOf(jTextField3.getText()));
         model.setGhiChu(jTextField6.getText());
@@ -272,7 +273,7 @@ void check(){
         jButton1 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 102, 255));
@@ -431,21 +432,22 @@ void check(){
                                 .addGap(15, 15, 15)))
                         .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel6)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel4)
+                                .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                                .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                                .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5)
                             .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))
                         .addGap(25, 25, 25))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -454,7 +456,7 @@ void check(){
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -469,8 +471,8 @@ void check(){
                     .addComponent(jTextField3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7))
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -481,7 +483,7 @@ void check(){
                 .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(jButton9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton8)
                     .addComponent(jButton5)

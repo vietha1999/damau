@@ -10,13 +10,14 @@ import DAO.daoKH;
 import DAO.daoTK;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JInternalFrame;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author H2
  */
-public class ThongKeTongHop extends javax.swing.JFrame {
+public class ThongKeTongHop extends JInternalFrame {
  DAO.daoTK tkdao = new daoTK();
  DAO.daoKH khdao = new daoKH();
     /**
@@ -24,8 +25,8 @@ public class ThongKeTongHop extends javax.swing.JFrame {
      */
     public ThongKeTongHop() {
         initComponents();
-        setIconImage(helPer.ShareHP.APP_ICON);
-        setLocationRelativeTo(null);
+//        setIconImage(helPer.ShareHP.APP_ICON);
+//        setLocationRelativeTo(null);
                 fillComboBoxKhoaHoc();
         fillTableNguoiHoc();
         fillTableBangDiem();

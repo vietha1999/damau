@@ -23,6 +23,7 @@ public class hocvienKhoaHoc extends javax.swing.JFrame {
 Integer a;
 DAO.daoHV hvdao =new daoHV();
 DAO.daoNH nhdao =new daoNH();
+    boolean flag = false;
     /**
      * Creates new form hocvienKhoaHoc
      */
@@ -39,7 +40,6 @@ DAO.daoNH nhdao =new daoNH();
         a= id;
         fillComboBox();
         fillGridView();
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
  void init() {
         setIconImage(helPer.ShareHP.APP_ICON);
@@ -101,6 +101,22 @@ DAO.daoNH nhdao =new daoNH();
             helPer.DialogHP.alert(this, "Lỗi thêm học viên vào khóa học!");
         }
     }
+      void ktra() {
+        if (jTextField1.getText().length() > 2) {
+            helPer.DialogHP.alert(this, "Điểm chỉ nhập từ 0 đến 10");
+        } else {
+            if (jTextField1.getText().length() == 0) {
+                helPer.DialogHP.alert(this, "Hãy nhập vào điểm");
+            } else {
+                int diem = Integer.parseInt(jTextField1.getText());
+                if (diem < 0 || diem > 10) {
+                   helPer.DialogHP.alert(this, "Điểm chỉ nhập từ 0 đến 10");
+                } else {
+                    flag= true;
+                }
+            }
+        }
+    }
 
     void update() {
 
@@ -151,7 +167,7 @@ DAO.daoNH nhdao =new daoNH();
         jRadioButton3 = new javax.swing.JRadioButton();
         jButton2 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("HỌC VIÊN");
@@ -160,7 +176,18 @@ DAO.daoNH nhdao =new daoNH();
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
         jButton1.setText("Thêm");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -213,13 +240,34 @@ DAO.daoNH nhdao =new daoNH();
 
         buttonGroup1.add(jRadioButton1);
         jRadioButton1.setText("Tất Cả");
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(jRadioButton2);
         jRadioButton2.setText("Đã Nhập Điểm");
+        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton2ActionPerformed(evt);
+            }
+        });
 
+        buttonGroup1.add(jRadioButton3);
         jRadioButton3.setText("Chưa Nhập Điểm");
+        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton3ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Cập Nhập");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -277,6 +325,40 @@ DAO.daoNH nhdao =new daoNH();
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        ktra();
+        if (flag == true) {
+            insert();
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+               if (jTextField1.getText().equals("")) {
+            update();
+        } else {
+            ktra();
+            if (flag == true) {
+                update();
+            }
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        this.fillGridView();
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+        this.fillGridView();
+    }//GEN-LAST:event_jRadioButton2ActionPerformed
+
+    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
+        this.fillGridView();
+    }//GEN-LAST:event_jRadioButton3ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments

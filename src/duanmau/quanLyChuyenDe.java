@@ -10,13 +10,14 @@ import DAO.daoCD;
 import java.io.File;
 import java.util.List;
 import javax.swing.JFileChooser;
+import javax.swing.JInternalFrame;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author H2
  */
-public class quanLyChuyenDe extends javax.swing.JFrame {
+public class quanLyChuyenDe extends JInternalFrame {
 DAO.daoCD dao = new daoCD();
 int index= 0;
 boolean flg= false;
@@ -25,8 +26,6 @@ boolean flg= false;
      */
     public quanLyChuyenDe() {
         initComponents();
-        setIconImage(helPer.ShareHP.APP_ICON);
-        setLocationRelativeTo(null);
         if (helPer.ShareHP.USER != null) {
             this.load();
         } else {
@@ -365,39 +364,37 @@ boolean flg= false;
             helPer.DialogHP.alert(this, "ban phai nhap thoi luong");
         } else if (jTextField4.getText().isBlank()) {
             helPer.DialogHP.alert(this, "khong duoc bo trong hoc phi");
-        } else if (!jTextField3.getText().isBlank() || !jTextField4.getText().isBlank()) {
-            String hp = "java.lang.NumberFormatException: For input string: ";
-            String tl2 = "java.lang.NumberFormatException: For input string: ";
-            String tl = "";
-            try {
-                if (!jTextField3.getText().isBlank() || !jTextField4.getText().isBlank()) {
-                    int thoiluong = Integer.parseInt(jTextField3.getText());
-                    int hocphi = Integer.parseInt(jTextField4.getText());
-                    if (thoiluong <= 0) {
-                        helPer.DialogHP.alert(this, "Thời lượng phải lớn hơn 0 !!!");
-                    } else if (hocphi <= 0) {
-                        helPer.DialogHP.alert(this, "Học phí phải lớn hơn 0 !!!");
-                    } else {
-                        flg = true;
-                    }
-                }
-            } catch (Exception e) {
-                System.out.println(e);
-                tl += e.toString();
-                hp += "\"" + (jTextField3.getText()).toString() + "\"";
-                tl2 += "\"" + (jTextField4.getText()).toString() + "\"";
-                System.out.println(hp);
-                System.out.println(tl2);
-                if (tl.equals(hp)) {
-                    helPer.DialogHP.alert(this, "Học phí phải truyền vào kiểu số!");
-                } else if (tl.equals(tl2)) {
-                    helPer.DialogHP.alert(this, "Thời lượng phải truyền vào kiểu số!");
-                }
-            }
+//        } else if (!jTextField3.getText().isBlank() || !jTextField4.getText().isBlank()) {
+//            String hp = "java.lang.NumberFormatException: For input string: ";
+//            String tl2 = "java.lang.NumberFormatException: For input string: ";
+//            String tl = "";
+//            try {
+//                if (!jTextField3.getText().isBlank() || !jTextField4.getText().isBlank()) {
+//                    int thoiluong = Integer.parseInt(jTextField3.getText());
+//                    int hocphi = Integer.parseInt(jTextField4.getText());
+//                    if (thoiluong <= 0) {
+//                        helPer.DialogHP.alert(this, "Thời lượng phải lớn hơn 0 !!!");
+//                    } else if (hocphi <= 0) {
+//                        helPer.DialogHP.alert(this, "Học phí phải lớn hơn 0 !!!");
+//                    } 
+//                }
+//            } catch (Exception e) {
+//                System.out.println(e);
+//                tl += e.toString();
+//                hp += "\"" + (jTextField3.getText()).toString() + "\"";
+//                tl2 += "\"" + (jTextField4.getText()).toString() + "\"";
+//                System.out.println(hp);
+//                System.out.println(tl2);
+//                if (tl.equals(hp)) {
+//                    helPer.DialogHP.alert(this, "Học phí phải truyền vào kiểu số!");
+//                } else if (tl.equals(tl2)) {
+//                    helPer.DialogHP.alert(this, "Thời lượng phải truyền vào kiểu số!");
+//                }
+//            }
         }else if(lbimg.getIcon()== null){
             helPer.DialogHP.alert(this, "ban phai chon hinh anh");
-        }else {
-            flg = true;
+        }else{   
+            insert();
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed
